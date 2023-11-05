@@ -33,7 +33,7 @@ const Nav = () => {
         <p className="logo_text">Promptopia</p>
       </Link>
 
-      {/* Mobile Navigation */}
+      {/* Desktop Navigation */}
 
       <div className="sm:flex hidden">
         {isUserLoggedIn ? (
@@ -57,7 +57,7 @@ const Nav = () => {
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((provider) => {
+              Object.values(providers).map((provider) => (
                 <button
                   type="button"
                   key={provider.name}
@@ -65,11 +65,12 @@ const Nav = () => {
                   className="black_btn"
                 >
                   Sign In
-                </button>;
-              })}
+                </button>
+              ))}
           </>
         )}
       </div>
+
       {/* Mobile navigation */}
       <div className="sm:hidden flex relative">
         {isUserLoggedIn ? (
@@ -81,6 +82,7 @@ const Nav = () => {
               className="rounded-full"
               alt="Profile"
               onClick={() => setToggleDropdown((prev) => !prev)}
+              // prev is the previous state
             />
             {toggleDropdown && (
               <div className="dropdown">
