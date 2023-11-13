@@ -15,13 +15,15 @@ const handler = NextAuth({
     const sessionUser = await User.findOne({
       email: session.user.email,
     });
-    session.user.id = sessionUSer._id.toString();
+    session.user.id = sessionUser._id.toString();
     return session;
   },
   async signIn({ profile }) {
     try {
       await connectToDB();
 
+      // check a user already exists
+      // if not, create a new user
       const userExists = await User.findOne({
         email: profile.email,
       });
