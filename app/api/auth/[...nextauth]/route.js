@@ -20,6 +20,7 @@ const handler = NextAuth({
       return session;
     },
     async signIn({ profile }) {
+      console.log("profile in next auth ", profile);
       try {
         await connectToDB();
 
@@ -28,6 +29,7 @@ const handler = NextAuth({
         const userExists = await User.findOne({
           email: profile.email,
         });
+        console.log("userExists -----", userExists);
         if (!userExists) {
           await User.create({
             email: profile.email,
@@ -38,7 +40,7 @@ const handler = NextAuth({
 
         return true;
       } catch (error) {
-        console.log(error);
+        console.log("error next auth--------------", error);
         return false;
       }
     },
